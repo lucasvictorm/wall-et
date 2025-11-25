@@ -13,21 +13,25 @@ import SetaPerda from './components/SetaPerda.jsx'
 import ContainerMovimentacoes from './components/ContainerMovimentacoes.jsx'
 import Footer from './components/Footer.jsx'
 
+
+
 function App() {
 
 
   return (
     <Container>
-      <Header>
+      <Header titulo={'Sua carteira virtual'}/>
+        
+     
+
+      <MainContainer>
         <h1 className="font-bold text-gray-500">Saldo Total</h1>
-        <div className='flex space-x-4 items-center'>
+        <div className='mb-5 flex space-x-4 items-center'>
           <h2 className='text-4xl'>R$ 100,00</h2>
+
           <TrendingUp color='#32a852' />
         </div>
 
-      </Header>
-
-      <MainContainer>
         <div className='flex space-x-5'>
           <Card>
 
