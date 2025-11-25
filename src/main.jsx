@@ -6,7 +6,7 @@ import './index.css'
 import App from './App.jsx'
 import Lancamentos from './pages/Lancamentos.jsx';
 import Historico from './pages/Historico.jsx';
-import { AppContext } from './context/AppContext.jsx';
+import { AppProvider } from './context/AppContext.jsx';
 
 let router = createBrowserRouter([
   {
@@ -26,9 +26,9 @@ let router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <AppContext>
+    <AppProvider>
 
       <RouterProvider router={router}/>
-    </AppContext>
+    </AppProvider>
   </StrictMode>,
 )

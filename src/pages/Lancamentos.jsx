@@ -4,13 +4,32 @@ import Container from "../components/Container";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import MainContainer from "../components/MainContainer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Input from "../components/Input";
+
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext";
 
 function Lancamentos() {
 
-    const [tipo, setTipo] = useState('')
+    const [tipo, setTipo] = useState('saida')
+    const { movimento, setMovimento } = useContext(AppContext);
+    const [descricao, setDescricao] = useState('')
+    const [valor, setValor] = useState('')
+    const [data, setData] = useState('')
 
+    function onRegistrar(){
+        let obj = {
+            desc : descricao,
+            valor: valor,
+            data: data
+        }
+        setMovimento(prev => [...prev, obj])
+    }
+
+    useEffect(()=>{
+        console.log(movimento)
+    }, [movimento])
 
     return (
 
@@ -38,13 +57,13 @@ function Lancamentos() {
                 <div className="shadow mt-5 p-4 rounded-2xl">
                     <div className="space-y-4">
                         
-                        <Input label={'Descrição' }name={'descricao'} type={'text'} placeholder={'Roupas, mercado...'}/>
+                        <Input onChange={event =>setDescricao(event.target.value)} label={'Descrição' }name={'descricao'} type={'text'} placeholder={'Roupas, mercado...'}/>
 
-                        <Input type={'number'} label={'Valor (R$)' }name={'descricao'} placeholder={'0,00'}/>
+                        <Input onChange={event =>setValor(event.target.value)} type={'number'} label={'Valor (R$)' }name={'valor'} placeholder={'0,00'}/>
 
-                        <Input label={'Data'} name={'data'} placeholder={'Informe a data'} type={'date'}/>
+                        <Input onChange={event =>setData(event.target.value)} label={'Data'} name={'data'} placeholder={'Informe a data'} type={'date'}/>
 
-                        <button className="bg-green-900 rounded-sm p-2 text-white font-medium w-full">
+                        <button onClick={onRegistrar} className="bg-green-900 rounded-sm p-2 text-white font-medium w-full">
                             Registrar
 
                         </button>
